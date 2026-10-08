@@ -1,4 +1,4 @@
-There are two supported funtions: Connect and ExtractKey 
+There are two supported functions: Connect and ExtractKey 
 
  [TestMethod]
  public void InfoSec_KD_connect()
@@ -17,7 +17,7 @@ There are two supported funtions: Connect and ExtractKey
      // Extract Function endpoint 
        Uri _baseUri = new Uri(fp.Audience());
 
-     // Build funtion endpoint Uri
+     // Build function endpoint Uri
      HttpClient _httpClient = new HttpClient();
      string _relativeUrl = "api/Connect";
      Uri _uri = new Uri(_baseUri, _relativeUrl);
@@ -33,7 +33,7 @@ There are two supported funtions: Connect and ExtractKey
      HttpResponseMessage response = _httpClient.PostAsync(_uri, content).Result;
      if (response.IsSuccessStatusCode)
      {
-         // download vernan cipher protected secret (Medley vectors) bound to the devices..
+         // download Vernam cipher protected secret (Medley vectors) bound to the devices.
          string connect = response.Content.ReadAsStringAsync().Result;
          string fpath = @"D:\Examples\INFO\Files\\Connect-" + sin + ".jwt";
          System.IO.File.WriteAllText(fpath, connect);
@@ -66,7 +66,7 @@ There are two supported funtions: Connect and ExtractKey
      // Extract Function endpoint 
       Uri _baseUri = new Uri(fp.Audience());
 
-     // Build funtion endpoint Uri
+     // Build function endpoint Uri
      HttpClient _httpClient = new HttpClient();
      string _relativeUrl = "api/ExtractKey";
      Uri _uri = new Uri(_baseUri, _relativeUrl);
@@ -81,7 +81,7 @@ There are two supported funtions: Connect and ExtractKey
      HttpResponseMessage response = _httpClient.PostAsync(_uri, content).Result;
      if (response.IsSuccessStatusCode)
      {
-         // download vernan cipher protected secret (Medley vectors) bound to this device..
+         // download Vernam cipher protected secret (Medley vectors) bound to this device.
          string data = response.Content.ReadAsStringAsync().Result;
          Fido.LinkInfo li = new Fido.LinkInfo(data);
          byte[] keyBytes = fp.DeviceEcDhUnProtect(li);
